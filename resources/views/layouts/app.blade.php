@@ -115,7 +115,6 @@
     <script src="../assets/js/prism/prism.min.js"></script>
     <script src="../assets/js/clipboard/clipboard.min.js"></script>
     <script src="../assets/js/custom-card/custom-card.js"></script>
-    <script src="../assets/js/notify/bootstrap-notify.min.js"></script>
     <script src="../assets/js/dashboard/default.js"></script>
     <script src="../assets/js/notify/index.js"></script>
     <script src="../assets/js/typeahead/handlebars.js"></script>

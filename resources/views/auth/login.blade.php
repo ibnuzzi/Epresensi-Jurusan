@@ -64,7 +64,7 @@
                         <div class="login-main">
                             <form method="POST" action="{{ route('login') }}" class="theme-form">
                                 @csrf
-                                <h2 class="text-center">Selamat Datang Kembali</h2>
+                                <h2 class="text-center">E-Presensi</h2>
                                 <p class="text-center">Masukkan email & kata sandi Anda untuk login</p>
                                 <div class="form-group">
                                     <label for="email" class="form-label"
