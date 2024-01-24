@@ -15,7 +15,7 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         foreach (Role::all() as $role) {
-            $profile = User::query()
+            $user = User::query()
                 ->create([
                     'id' => Uuid::uuid(),
                     'name' => $role['name'],
@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
                     'email_verified_at' => now()
                 ]);
 
-            $profile->assignRole($role);
+            $user->assignRole($role);
         }
     }
 }
