@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Mirrored from admin.pixelstrap.com/koho/template/login_two.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 Jan 2024 05:06:25 GMT -->
+<!-- Mirrored from admin.pixelstrap.com/koho/template/login_one.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 Jan 2024 05:06:25 GMT -->
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -12,9 +12,9 @@
     <meta name="keywords"
         content="admin template, Koho admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="pixelstrap">
-    <link rel="icon" href="../assets/images/favicon/favicon.png" type="image/x-icon">
-    <link rel="shortcut icon" href="../assets/images/favicon/favicon.png" type="image/x-icon">
-    <title>Koho - Premium Admin Template</title>
+    <link rel="icon" href="{{ asset('assets/images/smk/rpl.png') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('assets/images/smk/rpl.png') }}" type="image/x-icon">
+    <title>Login</title>
     <!-- Google font-->
     <link rel="preconnect" href="https://fonts.googleapis.com/">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
@@ -54,18 +54,18 @@
     <!-- login page start-->
     <div class="container-fluid">
         <div class="row">
-            <div class="col-xl-5"><img class="bg-img-cover bg-center" src="../assets/images/login/3.jpg" alt="bg3">
+            <div class="col-xl-7"><img class="bg-img-cover bg-center" src="../assets/images/login/2.jpg" alt="bg2">
             </div>
-            <div class="col-xl-7 p-0">
+            <div class="col-xl-5 p-0">
                 <div class="login-card">
                     <div>
-                        <div><a class="logo" href="index.html"><img class="img-fluid for-light"
-                                    src="{{ asset('assets/images/smk/Logo SMKN 2 Trenggalek.png') }}" style="width: 50%;" alt="logo image"></a></div>
+                        <div><a class="logo" href="index.html"><img class="img-fluid for-light" style="width: 70%"
+                                    src="{{ asset('assets/images/smk/Logo SMKN 2 Trenggalek.png') }}" alt="logo Image"></a></div>
                         <div class="login-main">
                             <form method="POST" action="{{ route('login') }}" class="theme-form">
                                 @csrf
-                                <h2 class="text-center">Sign in to account</h2>
-                                <p class="text-center">Enter your email & password to login</p>
+                                <h2 class="text-center">Selamat Datang Kembali</h2>
+                                <p class="text-center">Masukkan email & kata sandi Anda untuk login</p>
                                 <div class="form-group">
                                     <label for="email" class="form-label"
                                         style="font-weight: bold">{{ __('Email') }}</label>
@@ -83,9 +83,8 @@
                                     <label for="email" class="form-label"
                                         style="font-weight: bold">{{ __('Password') }}</label>
                                     <input type="password" class="form-control @error('password') is-invalid @enderror"
-                                        name="password" autocomplete="current-password"
-                                        placeholder="Masukan Password" aria-label="Password"
-                                        aria-describedby="password-addon">
+                                        name="password" autocomplete="current-password" placeholder="Masukan Password"
+                                        aria-label="Password" aria-describedby="password-addon">
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -98,12 +97,12 @@
                                         <label class="text-muted" for="checkbox1">Remember password</label>
                                     </div><a class="link" href="forget-password.html">Forgot password?</a>
                                     <div class="text-end mt-3">
-                                        <button class="btn btn-primary btn-block w-100" type="submit">Sign in
+                                        <button class="btn btn-primary btn-block w-100" type="submit">Log in
                                         </button>
                                     </div>
                                 </div>
-                                <p class="mt-4 mb-0 text-center">Don't have account?<a class="ms-2"
-                                        href="sign-up.html">Create Account</a></p>
+                                <p class="mt-4 mb-0 text-center">Belum Punya Akun?<a class="ms-2"
+                                        href="{{ route('register') }}">Register</a></p>
                             </form>
                         </div>
                     </div>
@@ -124,6 +123,6 @@
     </div>
 </body>
 
-<!-- Mirrored from admin.pixelstrap.com/koho/template/login_two.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 Jan 2024 05:06:26 GMT -->
+<!-- Mirrored from admin.pixelstrap.com/koho/template/login_one.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 Jan 2024 05:06:25 GMT -->
 
 </html>

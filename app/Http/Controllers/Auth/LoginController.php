@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\LoginRequest;
-use App\Providers\RouteServiceProvider;
 use App\Services\Auth\LoginService;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Request;
+use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -40,6 +42,18 @@ class LoginController extends Controller
     public function login(LoginRequest $request)
     {
         return $this->loginService->handleLogin($request);
+    }
+
+    /**
+     * Handle user logout.
+     *
+     * This function is responsible for handling user logout requests. It deletes the current user's access token,
+     * effectively logging the user out of the system.
+     */
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        return redirect()->route('login');
     }
 
     /**
