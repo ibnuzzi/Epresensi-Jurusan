@@ -27,25 +27,25 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&amp;display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/font-awesome.css') }}">
     <!-- ico-font-->
-    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/icofont.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/icofont.css') }}">
     <!-- Themify icon-->
-    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/themify.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/themify.css') }}">
     <!-- Flag icon-->
-    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/flag-icon.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/flag-icon.css') }}">
     <!-- Feather icon-->
-    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/feather-icon.css">
-    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/scrollbar.css">
-    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/animate.css">
-    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/prism.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/feather-icon.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/scrollbar.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/animate.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/prism.css') }}">
     <!-- Bootstrap css-->
-    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/bootstrap.css') }}">
     <!-- App css-->
-    <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
-    <link id="color" rel="stylesheet" href="../assets/css/color-1.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
+    <link id="color" rel="stylesheet" href="{{ asset('assets/css/color-1.css') }}" media="screen">
     <!-- Responsive css-->
-    <link rel="stylesheet" type="text/css" href="../assets/css/responsive.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/responsive.css') }}">
 </head>
 
 <body>
@@ -68,23 +68,6 @@
             @include('layouts.sidebar')
             <!-- Page Sidebar Ends-->
             <div class="page-body">
-                <div class="container-fluid">
-                    <div class="page-title">
-                        <div class="row">
-                            <div class="col-6">
-                                <h3>Default Dashboard</h3>
-                            </div>
-                            <div class="col-6">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html"> <i data-feather="home"></i></a>
-                                    </li>
-                                    <li class="breadcrumb-item">Dashboard</li>
-                                    <li class="breadcrumb-item active">Default </li>
-                                </ol>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <!-- Container-fluid starts-->
                 <div class="container-fluid default-page">
                     @yield('content')
@@ -95,36 +78,36 @@
             @include('layouts.footer')
         </div>
     </div>
-    @yield('scripts')
     <!-- latest jquery-->
-    <script src="../assets/js/jquery-3.6.0.min.js"></script>
-    <script src="../assets/js/bootstrap/popper.min.js"></script>
-    <script src="../assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap/popper.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap/bootstrap.bundle.min.js') }}"></script>
     <!-- feather icon js-->
-    <script src="../assets/js/icons/feather-icon/feather.min.js"></script>
-    <script src="../assets/js/icons/feather-icon/feather-icon.js"></script>
-    <script src="../assets/js/scrollbar/simplebar.js"></script>
-    <script src="../assets/js/scrollbar/custom.js"></script>
+    <script src="{{ asset('assets/js/icons/feather-icon/feather.min.js') }}"></script>
+    <script src="{{ asset('assets/js/icons/feather-icon/feather-icon.js') }}"></script>
+    <script src="{{ asset('assets/js/scrollbar/simplebar.js') }}"></script>
+    <script src="{{ asset('assets/js/scrollbar/custom.js') }}"></script>
     <!-- Sidebar jquery-->
-    <script src="../assets/js/config.js"></script>
-    <script src="../assets/js/sidebar-menu.js"></script>
-    <script src="../assets/js/chart/knob/knob.min.js"></script>
-    <script src="../assets/js/chart/knob/knob-chart.js"></script>
-    <script src="../assets/js/chart/apex-chart/apex-chart.js"></script>
-    <script src="../assets/js/chart/apex-chart/stock-prices.js"></script>
-    <script src="../assets/js/prism/prism.min.js"></script>
-    <script src="../assets/js/clipboard/clipboard.min.js"></script>
-    <script src="../assets/js/custom-card/custom-card.js"></script>
-    <script src="../assets/js/dashboard/default.js"></script>
-    <script src="../assets/js/notify/index.js"></script>
-    <script src="../assets/js/typeahead/handlebars.js"></script>
-    <script src="../assets/js/typeahead/typeahead.bundle.js"></script>
-    <script src="../assets/js/typeahead/typeahead.custom.js"></script>
-    <script src="../assets/js/typeahead-search/handlebars.js"></script>
-    <script src="../assets/js/typeahead-search/typeahead-custom.js"></script>
+    <script src="{{ asset('assets/js/config.js') }}"></script>
+    <script src="{{ asset('assets/js/sidebar-menu.js') }}"></script>
+    <script src="{{ asset('assets/js/chart/knob/knob.min.js') }}"></script>
+    <script src="{{ asset('assets/js/chart/knob/knob-chart.js') }}"></script>
+    <script src="{{ asset('assets/js/chart/apex-chart/apex-chart.js') }}"></script>
+    <script src="{{ asset('assets/js/chart/apex-chart/stock-prices.js') }}"></script>
+    <script src="{{ asset('assets/js/prism/prism.min.js') }}"></script>
+    <script src="{{ asset('assets/js/clipboard/clipboard.min.js') }}"></script>
+    <script src="{{ asset('assets/js/custom-card/custom-card.js') }}"></script>
+    <script src="{{ asset('assets/js/dashboard/default.js') }}"></script>
+    <script src="{{ asset('assets/js/notify/index.js') }}"></script>
+    <script src="{{ asset('assets/js/typeahead/handlebars.js') }}"></script>
+    <script src="{{ asset('assets/js/typeahead/typeahead.bundle.js') }}"></script>
+    <script src="{{ asset('assets/js/typeahead/typeahead.custom.js') }}"></script>
+    <script src="{{ asset('assets/js/typeahead-search/handlebars.js') }}"></script>
+    <script src="{{ asset('assets/js/typeahead-search/typeahead-custom.js') }}"></script>
     <!-- Theme js-->
-    <script src="../assets/js/script.js"></script>
-    <script src="../assets/js/theme-customizer/customizer.js"></script>
+    <script src="{{ asset('assets/js/script.js') }}"></script>
+    <script src="{{ asset('assets/js/theme-customizer/customizer.js') }}"></script>
+    @yield('scripts')
 </body>
 
 <!-- Mirrored from admin.pixelstrap.com/koho/template/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 Jan 2024 05:03:09 GMT -->

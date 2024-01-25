@@ -39,6 +39,27 @@
                             <div class="according-menu"><i class="fa fa-angle-right"></i></div>
                         </a>
                     </li>
+                    <li class="sidebar-list">
+                        <a class="sidebar-link sidebar-title link-nav" href="/classroom" data-bs-original-title="" title="">
+                            <i data-feather="users"></i>
+                            <span>Kelas</span>
+                            <div class="according-menu"><i class="fa fa-angle-right"></i></div>
+                        </a>
+                    </li>
+                    <li class="sidebar-list">
+                        <a class="sidebar-link sidebar-title link-nav" href="/" data-bs-original-title="" title="">
+                            <i data-feather="clock"></i>
+                            <span>Setting Jam</span>
+                            <div class="according-menu"><i class="fa fa-angle-right"></i></div>
+                        </a>
+                    </li>
+                    <li class="sidebar-list">
+                        <a class="sidebar-link sidebar-title link-nav" href="/" data-bs-original-title="" title="">
+                            <i data-feather="user-check"></i>
+                            <span>Kehadiran</span>
+                            <div class="according-menu"><i class="fa fa-angle-right"></i></div>
+                        </a>
+                    </li>
 
                 </ul>
                 <div class="sidebar-img-section">
