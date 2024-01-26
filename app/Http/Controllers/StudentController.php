@@ -4,15 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 use Illuminate\Http\Request;
+use App\Contracts\Interfaces\StudentInterface;
 
 class StudentController extends Controller
 {
+
+    private StudentInterface $student;
+
+    public function __construct(StudentInterface $student)
+    {
+        $this->student = $student;
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $students = $this->student->get();
+        return view('admin.student', compact('students'));
     }
 
     /**

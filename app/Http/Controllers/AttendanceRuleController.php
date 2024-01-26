@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\AttendanceRule;
+use App\Http\Requests\AttendanceRuleRequest;
 use App\Contracts\Interfaces\AttendanceRuleInterface;
 
 class AttendanceRuleController extends Controller
@@ -34,13 +35,14 @@ class AttendanceRuleController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(AttendanceRuleRequest $request)
     {
-        
+        $this->attendanceRule->store($request->validated());
+        return redirect()->back()->with('success');
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified resource
      */
     public function show(AttendanceRule $attendanceRule)
     {

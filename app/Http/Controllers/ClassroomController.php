@@ -61,7 +61,7 @@ class ClassroomController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Classroom $classroom)
+    public function update(ClassroomRequest $request, Classroom $classroom)
     {
         $this->classroom->update($classroom->id, $request->validated());
         return redirect()->back()->with('success', trans('alert.update_success'));

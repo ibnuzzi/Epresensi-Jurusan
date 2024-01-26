@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\AttendanceRuleController;
@@ -23,10 +24,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/student', function (){
-    return view('admin.student');
-});
 
+Route::resource('student', StudentController::class);
 Route::resource('classroom', ClassroomController::class);
 Route::resource('clock-settings', AttendanceRuleController::class);
 Route::resource('attendance', AttendanceController::class);

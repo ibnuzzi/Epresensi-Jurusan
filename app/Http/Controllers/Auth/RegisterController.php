@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
+use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
 use App\Services\Auth\RegisterService;
 use App\Contracts\Interfaces\UserInterface;
 use App\Http\Requests\Auth\RegisterRequest;
+use App\Contracts\Interfaces\StudentInterface;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Contracts\Interfaces\ClassroomInterface;
 
 class RegisterController extends Controller
 {
@@ -32,16 +35,33 @@ class RegisterController extends Controller
     protected $redirectTo = '/home';
 
     private RegisterService $service;
+    private UserInterface $user;
+    private ClassroomInterface $classroom;
+    private StudentInterface $student;
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(RegisterService $service, UserInterface $user)
+    public function __construct(RegisterService $service, UserInterface $user, ClassroomInterface $classroom, StudentInterface $student)
     {
         $this->service = $service;
         $this->user = $user;
+        $this->classroom = $classroom;
+        $this->student = $student;
         $this->middleware('guest');
+    }
+
+    /**
+     * Show the application registration form.
+     *
+     * @return View
+     */
+    public function showRegistrationForm(): View
+    {
+        $classrooms = $this->classroom->get();
+
+        return view('auth.register', compact('classrooms'));
     }
 
     /**
@@ -52,7 +72,7 @@ class RegisterController extends Controller
 
     public function register(RegisterRequest $request)
     {
-        $this->service->handleRegistration($request, $this->user);
+        $this->service->handleRegistration($request, $this->user, $this->student);
 
         return redirect()->back()->with('success', trans('auth.register_success'));
     }

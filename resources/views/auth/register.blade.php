@@ -97,6 +97,15 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
+                                    <label class="form-label" for="exampleFormControlSelect9">Kelas</label>
+                                    <select class="form-select digits" name="classroom_id" id="exampleFormControlSelect9">
+                                        <option value="">Pilih Kelas</option>
+                                    @foreach ($classrooms as $classroom)
+                                    <option value="{{ $classroom->id }}">{{ $classroom->name }}</option>
+                                    @endforeach
+                                    </select>
+                                  </div>
+                                <div class="form-group">
                                     <label class="col-form-label">Password</label>
                                     <div class="form-input position-relative">
                                         <input

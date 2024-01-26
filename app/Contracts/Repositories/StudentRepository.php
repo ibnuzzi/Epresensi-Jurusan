@@ -2,20 +2,13 @@
 
 namespace App\Contracts\Repositories;
 
-use App\Contracts\Interfaces\AttendanceRuleInterface;
+use App\Contracts\Interfaces\StudentInterface;
 use App\Contracts\Repositories\BaseRepository;
-use App\Models\AttendanceRule;
+use App\Models\Student;
 
-class AttendanceRuleRepository extends BaseRepository implements AttendanceRuleInterface
+class studentRepository extends BaseRepository implements StudentInterface
 {
-
-    /**
-     * __construct
-     *
-     * @param  mixed $model
-     * @return void
-     */
-    public function __construct(AttendanceRule $model)
+    public function __construct(Student $model)
     {
         $this->model = $model;
     }
@@ -40,6 +33,6 @@ class AttendanceRuleRepository extends BaseRepository implements AttendanceRuleI
     public function store(array $data): mixed
     {
         return $this->model->query()
-        ->updateOrCreate(['day' => $data['day']], $data);
+            ->create($data);
     }
 }

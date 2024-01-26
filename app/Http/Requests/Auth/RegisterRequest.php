@@ -16,6 +16,7 @@ class RegisterRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255',
+            'classroom_id' => 'required',
             'email' => 'required|email|max:255|unique:users,email',
             'password' => 'required|min:8|same:password_confirmation',
             'password_confirmation' => 'required',
@@ -32,6 +33,8 @@ class RegisterRequest extends FormRequest
         return [
             'name.required' => 'Kolom nama harus diisi.',
             'name.max' => 'Kolom nama tidak boleh lebih dari 255 karakter.',
+
+            'classroom_id.required' => 'Kelas harus diisi.',
 
             'email.required' => 'Kolom email harus diisi.',
             'email.email' => 'Format email tidak valid.',

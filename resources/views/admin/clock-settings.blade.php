@@ -54,31 +54,28 @@
                                     @csrf
                                     @method('POST')
                                     <div class="row">
+                                        <input type="hidden" name="day" value="{{ $attendanceRule->day }}">
                                         <div class="col-sm-6 mb-3">
                                             <label class="form-label">Waktu Masuk Dimulai</label>
-                                            <input class="form-control digits" type="time"
-                                                value="{{ $attendanceRule->checkin_starts }}" data-bs-original-title=""
-                                                title="">
+                                            <input class="form-control" name="checkin_starts" type="time"
+                                                value="{{ $attendanceRule->checkin_starts }}">
                                         </div>
                                         <div class="col-sm-6 mb-3">
                                             <label class="form-label">Waktu Masuk Selesai</label>
-                                            <input class="form-control digits" type="time"
-                                                value="{{ $attendanceRule->checkin_ends }}" data-bs-original-title=""
-                                                title="">
+                                            <input class="form-control" name="checkin_ends" type="time"
+                                                value="{{ $attendanceRule->checkin_ends }}">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <label class="form-label">Waktu Pulang Dimulai</label>
-                                            <input class="form-control digits" type="time"
-                                                value="{{ $attendanceRule->checkout_starts }}" data-bs-original-title=""
-                                                title="">
+                                            <input class="form-control" name="checkout_starts" type="time"
+                                                value="{{ $attendanceRule->checkout_starts }}">
                                         </div>
                                         <div class="col-sm-6">
                                             <label class="form-label">Waktu Pulang Selesai</label>
-                                            <input class="form-control digits" type="time"
-                                                value="{{ $attendanceRule->checkout_ends }}" data-bs-original-title=""
-                                                title="">
+                                            <input class="form-control" name="checkout_ends" type="time"
+                                                value="{{ $attendanceRule->checkout_ends }}">
                                         </div>
                                     </div>
                                     <div class="d-row d-flex justify-content-end mt-3">
@@ -92,4 +89,15 @@
             </div>
         </div>
     </div>
+@endsection
+@section('scripts')
+@if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: '{{ session('success') }}',
+            });
+        </script>
+    @endif
 @endsection

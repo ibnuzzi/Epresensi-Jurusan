@@ -39,7 +39,7 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">No</th>
-                                        <th scope="col">Name</th>
+                                        <th scope="col">Nama</th>
                                         <th scope="col">Kelas</th>
                                         <th scope="col">Email</th>
                                         <th scope="col">Alamat</th>
@@ -48,8 +48,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @forelse ($students as $student)
                                     <tr>
-                                        <th class="pt-3" scope="row">1</th>
+                                        <th class="pt-3" scope="row">{{ $loop->iteration }}</th>
                                         <td class="pt-3">Mark Jecno </td>
                                         <td class="pt-3">22/08/2022 </td>
                                         <td class="pt-3">On leave </td>
@@ -57,6 +58,18 @@
                                         <td class="pt-3">29/30</td>
                                         <td class="pt-3">29/30</td>
                                     </tr>
+                                    @empty
+                                    <tr>
+                                        <td colspan="7" class="text-center">
+                                            <div class="d-flex justify-content-center" style="min-height:19rem">
+                                                <div class="my-auto">
+                                                    <img src="{{ asset('assets/images/smk/Asset 1.png') }}" width="100%" height="200" />
+                                                    <h4 class="text-center mt-4">Data Siswa Kosong!!</h4>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>

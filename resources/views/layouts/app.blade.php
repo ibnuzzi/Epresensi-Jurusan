@@ -46,6 +46,7 @@
     <link id="color" rel="stylesheet" href="{{ asset('assets/css/color-1.css') }}" media="screen">
     <!-- Responsive css-->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/responsive.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/sweetalert2.css') }}">
 </head>
 
 <body>
@@ -105,9 +106,71 @@
     <script src="{{ asset('assets/js/typeahead-search/handlebars.js') }}"></script>
     <script src="{{ asset('assets/js/typeahead-search/typeahead-custom.js') }}"></script>
     <script src="{{ asset('assets/js/tooltip-init.js') }}"></script>
+    <script src="{{ asset('assets/js/sweet-alert/sweetalert.min.js') }}"></script>
+    <script src="{{ asset('assets/js/sweet-alert/app.js') }}"></script>
     <!-- Theme js-->
     <script src="{{ asset('assets/js/script.js') }}"></script>
     <script src="{{ asset('assets/js/theme-customizer/customizer.js') }}"></script>
+    <script>
+        function getDataAttributes(elementId) {
+            const dataAttributes = {};
+            const element = $('#' + elementId);
+            if (element.length === 0) {
+                console.error('Element with ID "' + elementId + '" not found.');
+                return null;
+            }
+            $.each(element[0].attributes, function() {
+                if (this.name.startsWith('data-')) {
+                    const key = this.name.substring(5);
+                    const value = this.value;
+                    dataAttributes[key] = value;
+                }
+            });
+            return dataAttributes;
+        }
+
+        function setFormValues(formId, values) {
+            const form = $('#' + formId);
+            for (const key in values) {
+                if (values.hasOwnProperty(key)) {
+                    const value = values[key];
+                    const input = form.find('[name="' + key + '"]');
+                    if (input.length > 0) {
+                        const type = input.attr('type');
+                        if (type === 'radio') {
+                            input.filter('[value="' + value + '"]').prop('checked', true);
+                        } else if (input.is('select')) {
+                            if (input.hasClass('select2')) {
+                                input.val(value).trigger('change'); // Trigger change event for Select2
+                            } else {
+                                input.val(value).trigger('change');
+                            }
+                        } else {
+                            input.val(value);
+                        }
+                    } else {
+                        const textarea = form.find('textarea[name="' + key + '"]');
+                        if (textarea.length > 0) {
+                            textarea.html(value);
+                        }
+                    }
+                }
+            }
+        }
+
+        function handleDetail(data) {
+            const keys = Object.keys(data);
+            for (const key of keys) {
+                const text = data[key];
+                $('#detail-' + key).html(text)
+            }
+        }
+
+        function handleFile(data) {
+            const iframeSrc = data['file'];
+            $('#detail-file').attr('src', iframeSrc);
+        }
+    </script>
     @yield('scripts')
 </body>
 
