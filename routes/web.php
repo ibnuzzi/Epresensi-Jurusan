@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClassroomController;
+use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\AttendanceRuleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +28,5 @@ Route::get('/student', function (){
 });
 
 Route::resource('classroom', ClassroomController::class);
+Route::resource('clock-settings', AttendanceRuleController::class);
+Route::resource('attendance', AttendanceController::class);

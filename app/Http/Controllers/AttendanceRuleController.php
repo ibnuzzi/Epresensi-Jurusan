@@ -2,17 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AttendanceRule;
 use Illuminate\Http\Request;
+use App\Models\AttendanceRule;
+use App\Contracts\Interfaces\AttendanceRuleInterface;
 
 class AttendanceRuleController extends Controller
 {
+    private AttendanceRuleInterface $attendanceRule;
+
+    public function __construct(AttendanceRuleInterface $attendanceRule)
+    {
+        $this->attendanceRule = $attendanceRule;
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $attendanceRules = $this->attendanceRule->get();
+        return view('admin.clock-settings', compact('attendanceRules'));
     }
 
     /**
@@ -28,7 +36,7 @@ class AttendanceRuleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
