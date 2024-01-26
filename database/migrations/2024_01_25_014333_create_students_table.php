@@ -16,6 +16,8 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->foreignUuid('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignUuid('classroom_id')->constrained()->restrictOnDelete()->restrictOnUpdate();
+            $table->string('phone_number', 15)->nullable();
+            $table->text('address')->nullable();
             $table->date('birth_date')->nullable();
             $table->enum('gender', [GenderEnum::MALE->value, GenderEnum::FEMALE->value])->nullable();
             $table->timestamps();
