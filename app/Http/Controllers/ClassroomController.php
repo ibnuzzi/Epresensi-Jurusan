@@ -40,6 +40,7 @@ class ClassroomController extends Controller
     {
         $this->classroom->store($request->validated());
         return redirect()->back()->with('success', trans('alert.add_success'));
+
     }
 
     /**

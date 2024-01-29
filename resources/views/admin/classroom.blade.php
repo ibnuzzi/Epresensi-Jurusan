@@ -42,7 +42,9 @@
                                             <th class="pt-3" scope="row">{{ $loop->iteration }}</th>
                                             <td class="pt-3">{{ $classroom->name }}</td>
                                             <td class="pt-2">
-                                                <button class="btn btn-edit btn-sm btn-warning" data-id="{{ $classroom->id }}" id="btn-edit-{{ $classroom->id }}" data-name="{{ $classroom->name }}">
+                                                <button class="btn btn-edit btn-sm btn-warning"
+                                                    data-id="{{ $classroom->id }}" id="btn-edit-{{ $classroom->id }}"
+                                                    data-name="{{ $classroom->name }}">
                                                     Edit
                                                 </button>
                                                 <button class="btn btn-delete btn-sm btn-danger"
@@ -53,16 +55,17 @@
                                             </td>
                                         </tr>
                                     @empty
-                                    <tr>
-                                        <td colspan="3" class="text-center">
-                                            <div class="d-flex justify-content-center" style="min-height:19rem">
-                                                <div class="my-auto">
-                                                    <img src="{{ asset('no-data.png') }}" width="300" height="300" />
-                                                    <h4 class="text-center mt-4">FAQ kosong!!</h4>
+                                        <tr>
+                                            <td colspan="3" class="text-center">
+                                                <div class="d-flex justify-content-center" style="min-height:19rem">
+                                                    <div class="my-auto">
+                                                        <img src="{{ asset('assets/images/smk/Asset 1.png') }}"
+                                                            width="100%" height="200" />
+                                                        <h4 class="text-center mt-4">Data Kelas Kosong!!</h4>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                            </td>
+                                        </tr>
                                     @endforelse
                                 </tbody>
                             </table>
@@ -90,11 +93,11 @@
                                 <label for="formFile" class="form-label">Tambah Kelas</label>
                                 <input type="text" value="{{ old('name') }}" placeholder="XII RPL B"
                                     class="form-control @error('name') is-invalid @enderror" name="name">
-                                    @error('name')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -122,11 +125,11 @@
                                 <label for="formFile" class="form-label">Kelas</label>
                                 <input type="text" value="{{ old('name') }}" placeholder="XII RPL B"
                                     class="form-control @error('name') is-invalid @enderror" name="name">
-                                    @error('name')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -140,7 +143,7 @@
     </div>
 @endsection
 @section('scripts')
-    @if (session('success'))
+@if (session('success'))
         <script>
             Swal.fire({
                 icon: 'success',
@@ -150,7 +153,7 @@
         </script>
     @endif
     <script>
-         $('.btn-edit').click(function() {
+        $('.btn-edit').click(function() {
             const formData = getDataAttributes($(this).attr('id'))
             var actionUrl = `classroom/${formData['id']}`;
             $('#form-update').attr('action', actionUrl);
