@@ -51,11 +51,11 @@
                                     @forelse ($students as $student)
                                     <tr>
                                         <th class="pt-3" scope="row">{{ $loop->iteration }}</th>
-                                        <td class="pt-3">Mark Jecno </td>
-                                        <td class="pt-3">22/08/2022 </td>
-                                        <td class="pt-3">On leave </td>
-                                        <td class="pt-3">0</td>
-                                        <td class="pt-3">29/30</td>
+                                        <td class="pt-3">{{ $student->user->name }}</td>
+                                        <td class="pt-3">{{ $student->classroom->name }}</td>
+                                        <td class="pt-3">{{ $student->user->email }}</td>
+                                        <td class="pt-3">{{ $student->address == '' ? '-' : $student->address }}</td>
+                                        <td class="pt-3">{{ $student->phone_number == '' ? '-' : $student->phone_number }}</td>
                                         <td class="pt-3">29/30</td>
                                     </tr>
                                     @empty

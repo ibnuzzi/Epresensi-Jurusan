@@ -25,6 +25,7 @@
                             <h4 class="lan-1">General </h4>
                         </div>
                     </li>
+                    @if (auth()->user()->roles[0]->name == 'admin')
                     <li class="sidebar-list">
                         <a class="sidebar-link sidebar-title link-nav" href="/home" data-bs-original-title="" title="">
                             <i data-feather="home"></i>
@@ -60,7 +61,22 @@
                             <div class="according-menu"><i class="fa fa-angle-right"></i></div>
                         </a>
                     </li>
-
+                    @else
+                    <li class="sidebar-list">
+                        <a class="sidebar-link sidebar-title link-nav" href="/home" data-bs-original-title="" title="">
+                            <i data-feather="home"></i>
+                            <span>Dashboard</span>
+                            <div class="according-menu"><i class="fa fa-angle-right"></i></div>
+                        </a>
+                    </li>
+                    <li class="sidebar-list">
+                        <a class="sidebar-link sidebar-title link-nav" href="/presence" data-bs-original-title="" title="">
+                            <i data-feather="home"></i>
+                            <span>Absen</span>
+                            <div class="according-menu"><i class="fa fa-angle-right"></i></div>
+                        </a>
+                    </li>
+                    @endif
                 </ul>
                 <div class="sidebar-img-section">
                     <div class="sidebar-img-content"><img class="img-fluid"

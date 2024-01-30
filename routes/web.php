@@ -29,3 +29,6 @@ Route::resource('student', StudentController::class);
 Route::resource('classroom', ClassroomController::class);
 Route::resource('clock-settings', AttendanceRuleController::class);
 Route::resource('attendance', AttendanceController::class);
+Route::get('presence', function (){
+    return view('student.presence');
+});

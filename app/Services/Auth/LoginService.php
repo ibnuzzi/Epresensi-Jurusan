@@ -18,7 +18,7 @@ class LoginService
             if (auth()->user()->roles->pluck('name')[0] == 'admin') {
                 return to_route('home');
             } else {
-                return to_route('welcome');
+                return to_route('home');
             }
         } else {
             return redirect()->back()->withErrors(trans('auth.login_failed'))->withInput();
