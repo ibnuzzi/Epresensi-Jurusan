@@ -2,11 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Attendance;
 use Illuminate\Http\Request;
+use App\Services\AttendanceService;
+use App\Http\Requests\AttendanceRequest;
+use App\Contracts\Interfaces\AttendanceInterface;
 
 class AttendanceController extends Controller
 {
+    private AttendanceInterface $attendance;
+
+    public function __construct(AttendanceInterface $attendance, AttendanceService $service)
+    {
+        $this->attendance = $attendance;
+        $this->service = $service;
+    }
     /**
      * Display a listing of the resource.
      */
@@ -28,7 +39,23 @@ class AttendanceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $now = now();
+        $time = Carbon::parse($now);
+        $day = $time->format('l');
+
+        //check rules
+        $rule = $this->attendanceRule->showByDay($student->school_id, $day);
+        if ($rule->is_holiday) return ResponseHelper::error(null, trans('alert.is_holiday'));
+
+        //check attendance session
+        $attendanceTime = $this->service->checkAttendanceTime($rule, $now);
+        if (!$attendanceTime) return ResponseHelper::error(null, trans('alert.attendance_time_not_found'));
+
+        //check precense
+        $presence = $this->attendance->checkPrecense($student->user_id, $attendanceTime,Carbon::parse($now)->format('Y:m:d'));
+        if ($presence) return ResponseHelper::error(null, trans('alert.already_presence'));
+
+        $data = $this->service->store($request);
     }
 
     /**

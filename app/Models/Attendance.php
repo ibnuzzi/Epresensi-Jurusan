@@ -11,6 +11,6 @@ class Attendance extends Model
 
     protected $table = 'attendances';
     protected $primaryKey = 'id';
-    protected $fillable = ['id', 'user_id', 'date', 'status', 'license','created_at'];
+    protected $fillable = ['id', 'user_id', 'date', 'status','photo','license','created_at'];
     protected $guarded = [];
 }

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignUuid('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->date('date');
             $table->enum('status',[AttendanceStatusEnum::ALPHA->value,AttendanceStatusEnum::PERMISSION->value,AttendanceStatusEnum::PRESENT->value,AttendanceStatusEnum::SICK->value]);
+            $table->text('photo')->nullable();
             $table->text('license')->nullable();
             $table->timestamps();
         });

@@ -50,6 +50,7 @@
     <link href="
 https://cdn.jsdelivr.net/npm/sweetalert2@11.10.4/dist/sweetalert2.min.css
 " rel="stylesheet">
+    @yield('styles')
 </head>
 
 <body>
@@ -113,7 +114,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.10.4/dist/sweetalert2.min.css
     <script src="{{ asset('assets/js/sweet-alert/app.js') }}"></script>
     <!-- Theme js-->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.4/dist/sweetalert2.all.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.26/webcam.min.js"></script>
+
 
     <script src="{{ asset('assets/js/script.js') }}"></script>
     <script src="{{ asset('assets/js/theme-customizer/customizer.js') }}"></script>
