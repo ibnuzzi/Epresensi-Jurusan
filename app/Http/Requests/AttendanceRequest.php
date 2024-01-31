@@ -15,7 +15,7 @@ class AttendanceRequest extends FormRequest
     {
         return [
             'photo' => 'required|mimes:jpg,png,jpeg',
-            'date' => 'required|date',
+            'location' => 'required',
         ];
     }
 }

@@ -8,15 +8,18 @@ use Illuminate\Http\Request;
 use App\Services\AttendanceService;
 use App\Http\Requests\AttendanceRequest;
 use App\Contracts\Interfaces\AttendanceInterface;
+use App\Contracts\Interfaces\AttendanceRuleInterface;
 
 class AttendanceController extends Controller
 {
     private AttendanceInterface $attendance;
+    private AttendanceRuleInterface $attendanceRule;
 
-    public function __construct(AttendanceInterface $attendance, AttendanceService $service)
+    public function __construct(AttendanceInterface $attendance, AttendanceService $service, AttendanceRuleInterface $attendanceRule)
     {
         $this->attendance = $attendance;
         $this->service = $service;
+        $this->attendanceRule = $attendanceRule;
     }
     /**
      * Display a listing of the resource.
@@ -43,19 +46,25 @@ class AttendanceController extends Controller
         $time = Carbon::parse($now);
         $day = $time->format('l');
 
+        if($day == 'saturday' || $day == 'sunday'){
+            return redirect()->back()->with('error', 'Anda tidak bisa melakukan absen karena hari ini libur');
+        }
         //check rules
-        $rule = $this->attendanceRule->showByDay($student->school_id, $day);
-        if ($rule->is_holiday) return ResponseHelper::error(null, trans('alert.is_holiday'));
+        $rule = $this->attendanceRule->showByDay($day);
 
         //check attendance session
         $attendanceTime = $this->service->checkAttendanceTime($rule, $now);
-        if (!$attendanceTime) return ResponseHelper::error(null, trans('alert.attendance_time_not_found'));
+        if (!$attendanceTime) return redirect()->back()->with('error', 'Waktu Kehadiran tidak ditemukan');
 
         //check precense
-        $presence = $this->attendance->checkPrecense($student->user_id, $attendanceTime,Carbon::parse($now)->format('Y:m:d'));
+        $presence = $this->attendance->checkPrecense(auth()->user()->id, $attendanceTime,Carbon::parse($now)->format('Y:m:d'));
         if ($presence) return ResponseHelper::error(null, trans('alert.already_presence'));
 
-        $data = $this->service->store($request);
+        $data = $this->service->store(auth()->user()->id, $rule, $attendanceTime, $now, $request);
+
+        $this->attendance->store($data);
+
+        return redirect()->back()->with('success', 'Berhasil Absen');
     }
 
     /**

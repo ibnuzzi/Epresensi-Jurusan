@@ -14,7 +14,7 @@
 @endsection
 @section('content')
     <div class="container-fluid">
-        <input type="hidden" id="lokasi">
+        <input type="hidden" name="location" id="lokasi">
         <div id="camera"></div>
         <button id="take-picture" class="btn btn-primary d-flex col-12 justify-content-center"><svg
                 xmlns="http://www.w3.org/2000/svg" class="me-2" width="32" height="32" viewBox="0 0 24 24">
@@ -44,16 +44,16 @@
 
         document.getElementById('take-picture').addEventListener('click', function() {
             Webcam.snap(function(data_uri) {
-                image = data_uri;
+                photo = data_uri;
             });
-            var lokasi = $('#lokasi').val();
+            var location = $('#lokasi').val();
             $.ajax({
                 type: 'POST',
                 url: '{{ route('attendance.store') }}',
                 data: {
                     _token: "{{ csrf_token() }}",
-                    image: image,
-                    lokasi: lokasi
+                    photo: photo,
+                    location: location
                 }
             })
         });

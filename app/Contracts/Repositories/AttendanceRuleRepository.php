@@ -42,4 +42,17 @@ class AttendanceRuleRepository extends BaseRepository implements AttendanceRuleI
         return $this->model->query()
         ->updateOrCreate(['day' => $data['day']], $data);
     }
+
+    /**
+     * showByDay
+     *
+     * @param  mixed $day
+     * @return array
+     */
+    public function showByDay(string $day): mixed
+    {
+        return $this->model->query()
+            ->where('day',$day)
+            ->first();
+    }
 }
