@@ -15,16 +15,18 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between mb-3">
-                            <form class=" col-lg-3">
+                            <form class="">
                                 <div class="input-group">
                                     <input name="name" type="text" class="form-control" placeholder="Search"
                                         value="">
-                                    <div class="input-group-append">
-                                        <button class="btn text-white"
-                                            style="background-color: #1B3061; border-radius: 0 5px 5px 0;" type="submit">
-                                            <i data-feather="search" height="20" width="20" class="mt-2" style=""></i>
-                                        </button>
-                                    </div>
+                                </div>
+                                <div class="">
+                                    <select name="" id="" class="form-select">
+                                        <option value="">Filter Kelas</option>
+                                        @foreach ($classrooms as $classroom)
+                                            <option value="{{ $classroom->id }}">{{ $classroom->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </form>
                             {{-- <div class="">
@@ -49,26 +51,31 @@
                                 </thead>
                                 <tbody>
                                     @forelse ($students as $student)
-                                    <tr>
-                                        <th class="pt-3" scope="row">{{ $loop->iteration }}</th>
-                                        <td class="pt-3">{{ $student->user->name }}</td>
-                                        <td class="pt-3">{{ $student->classroom->name }}</td>
-                                        <td class="pt-3">{{ $student->user->email }}</td>
-                                        <td class="pt-3">{{ $student->address == '' ? '-' : $student->address }}</td>
-                                        <td class="pt-3">{{ $student->phone_number == '' ? '-' : $student->phone_number }}</td>
-                                        <td class="pt-3">29/30</td>
-                                    </tr>
+                                        <tr>
+                                            <th class="pt-3" scope="row">{{ $loop->iteration }}</th>
+                                            <td class="pt-3">{{ $student->user->name }}</td>
+                                            <td class="pt-3">{{ $student->classroom->name }}</td>
+                                            <td class="pt-3">{{ $student->user->email }}</td>
+                                            <td class="pt-3">{{ $student->address == '' ? '-' : $student->address }}</td>
+                                            <td class="pt-3">
+                                                {{ $student->phone_number == '' ? '-' : $student->phone_number }}</td>
+                                            <td class="pt-3 pb-2">
+                                                <div class="btn btn-primary btn-md">Edit</div>
+                                                <div class="btn btn-danger btn-md">Hapus</div>
+                                            </td>
+                                        </tr>
                                     @empty
-                                    <tr>
-                                        <td colspan="7" class="text-center">
-                                            <div class="d-flex justify-content-center" style="min-height:19rem">
-                                                <div class="my-auto">
-                                                    <img src="{{ asset('assets/images/smk/Asset 1.png') }}" width="100%" height="200" />
-                                                    <h4 class="text-center mt-4">Data Siswa Kosong!!</h4>
+                                        <tr>
+                                            <td colspan="7" class="text-center">
+                                                <div class="d-flex justify-content-center" style="min-height:19rem">
+                                                    <div class="my-auto">
+                                                        <img src="{{ asset('assets/images/smk/Asset 1.png') }}"
+                                                            width="100%" height="200" />
+                                                        <h4 class="text-center mt-4">Data Siswa Kosong!!</h4>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                            </td>
+                                        </tr>
                                     @endforelse
                                 </tbody>
                             </table>

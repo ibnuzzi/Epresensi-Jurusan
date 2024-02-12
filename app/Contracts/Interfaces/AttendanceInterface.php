@@ -2,9 +2,11 @@
 
 namespace App\Contracts\Interfaces;
 
+use App\Contracts\Interfaces\Eloquent\GetInterface;
+use App\Contracts\Interfaces\Eloquent\SearchInterface;
 use App\Contracts\Interfaces\Eloquent\StoreInterface;
 
-interface AttendanceInterface extends StoreInterface
+interface AttendanceInterface extends StoreInterface, GetInterface, SearchInterface
 {
     /**
      * check precense user on that day
@@ -15,5 +17,5 @@ interface AttendanceInterface extends StoreInterface
      * @return mixed
      */
 
-     public function checkPrecense(string $userId,string $type,mixed $date): mixed;
+    public function checkPrecense(string $userId, string $type, mixed $date): mixed;
 }

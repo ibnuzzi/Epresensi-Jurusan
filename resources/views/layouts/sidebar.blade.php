@@ -55,7 +55,7 @@
                         </a>
                     </li>
                     <li class="sidebar-list">
-                        <a class="sidebar-link sidebar-title link-nav" href="/attendance" data-bs-original-title="" title="">
+                        <a class="sidebar-link sidebar-title link-nav" href="/student-attendance" data-bs-original-title="" title="">
                             <i data-feather="user-check"></i>
                             <span>Kehadiran</span>
                             <div class="according-menu"><i class="fa fa-angle-right"></i></div>

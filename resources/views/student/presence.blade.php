@@ -14,7 +14,9 @@
 @endsection
 @section('content')
     <div class="container-fluid">
+        <div id="error-message" style="display: none;"></div>
         <input type="hidden" name="location" id="lokasi">
+        <input type="hidden" name="status" id="status" value="present">
         <div id="camera"></div>
         <button id="take-picture" class="btn btn-primary d-flex col-12 justify-content-center"><svg
                 xmlns="http://www.w3.org/2000/svg" class="me-2" width="32" height="32" viewBox="0 0 24 24">
@@ -47,16 +49,38 @@
                 photo = data_uri;
             });
             var location = $('#lokasi').val();
+            var status = $('#status').val();
             $.ajax({
                 type: 'POST',
                 url: '{{ route('attendance.store') }}',
                 data: {
                     _token: "{{ csrf_token() }}",
                     photo: photo,
-                    location: location
+                    location: location,
+                    status: status
+                },
+                success: function(response) {
+                    Swal.fire({
+                        title: 'Berhasil!',
+                        icon: 'success',
+                        text: response.meta.message
+                    })
+                },
+                error: function(response) {
+                    var response = response.responseJSON
+                    var status = response.meta.code
+                    if (status == 400) {
+                        Swal.fire({
+                            title: 'Error!',
+                            icon: 'error',
+                            text: response.meta.message
+                        });
+                    }
                 }
-            })
+            });
         });
+
+
 
 
         var lokasi = document.getElementById('lokasi');

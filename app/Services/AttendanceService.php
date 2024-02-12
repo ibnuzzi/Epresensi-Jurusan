@@ -3,8 +3,9 @@
 namespace App\Services;
 
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use App\Http\Requests\AttendanceRequest;
+use Illuminate\Support\Str;
 
 class AttendanceService
 {
@@ -19,25 +20,13 @@ class AttendanceService
     {
 
         $image = $request->photo;
-        $folderPath = "public/uploads/absensi/";
-        $formatName = hash(16);
-        $image_parts = explode(";base64", $image);
-        $image_base64 = base64_decode($image_parts[1]);
-        $fileName = $formatName . "png";
-        $file = $folderPath . $fileName;
-        dd($file);
-        Storage::put($file, $image_base64);
+        $folderPath = "public/absensi/";
+        $extension = explode('/', mime_content_type($image))[1];
+        $fileName = Str::random(16) . "." . $extension;
+        $filePath = $folderPath . $fileName;
 
-        // $photo = Attendance::where('user_id', $userId)->get();
-        // if($photo->photo == null){
-        //     $data['photo'] = $request->file('photo')->store('attendance_file', 'public');
-        // }
-
-        // if ($request->hasFile('photo')) {
-        //     Storage::delete('public/' . $photo->photo);
-        //     $data['photo'] = $request->file('photo')->store('attendance_file', 'public');
-        // }
-
+        // Simpan gambar
+        Storage::put($filePath, base64_decode(explode(";base64,", $image)[1]));
 
         $data = [
             'user_id' => $userId,
@@ -45,6 +34,7 @@ class AttendanceService
             'type' => $type,
             'status' => 'present',
             'created_at' => $time,
+            'photo' => $filePath,
             'location' => $request->location,
         ];
 

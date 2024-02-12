@@ -5,15 +5,18 @@ namespace App\Http\Controllers;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use App\Contracts\Interfaces\StudentInterface;
+use App\Contracts\Interfaces\ClassroomInterface;
 
 class StudentController extends Controller
 {
 
     private StudentInterface $student;
+    private ClassroomInterface $classroom;
 
-    public function __construct(StudentInterface $student)
+    public function __construct(StudentInterface $student, ClassroomInterface $classroom)
     {
         $this->student = $student;
+        $this->classroom = $classroom;
     }
 
     /**
@@ -21,8 +24,9 @@ class StudentController extends Controller
      */
     public function index()
     {
+        $classrooms = $this->classroom->get();
         $students = $this->student->get();
-        return view('admin.student', compact('students'));
+        return view('admin.student', compact('students', 'classrooms'));
     }
 
     /**

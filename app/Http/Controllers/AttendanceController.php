@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\Attendance;
 use Illuminate\Http\Request;
+use App\Helpers\ResponseHelper;
 use App\Services\AttendanceService;
-use App\Http\Requests\AttendanceRequest;
 use App\Contracts\Interfaces\AttendanceInterface;
+use App\Http\Resources\PresenceResource;
 use App\Contracts\Interfaces\AttendanceRuleInterface;
 
 class AttendanceController extends Controller
@@ -24,9 +25,10 @@ class AttendanceController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('admin.attendance');
+        $students = $this->attendance->search($request);
+        return ResponseHelper::success(PresenceResource::collection($students));
     }
 
     /**
@@ -42,29 +44,51 @@ class AttendanceController extends Controller
      */
     public function store(Request $request)
     {
+        $location = $request->location;
+        $locationUser = explode(",", $location);
+
         $now = now();
         $time = Carbon::parse($now);
         $day = $time->format('l');
 
-        if($day == 'saturday' || $day == 'sunday'){
-            return redirect()->back()->with('error', 'Anda tidak bisa melakukan absen karena hari ini libur');
+        if ($day == 'saturday' || $day == 'sunday') {
+            return ResponseHelper::error(null, trans('Anda tidak bisa melakukan absen karena hari ini libur'));
         }
+
         //check rules
         $rule = $this->attendanceRule->showByDay($day);
-
         //check attendance session
         $attendanceTime = $this->service->checkAttendanceTime($rule, $now);
-        if (!$attendanceTime) return redirect()->back()->with('error', 'Waktu Kehadiran tidak ditemukan');
+        if (!$attendanceTime) {
+            return ResponseHelper::error(null, trans('Waktu Kehadiran tidak ditemukan'));
+        }
 
         //check precense
-        $presence = $this->attendance->checkPrecense(auth()->user()->id, $attendanceTime,Carbon::parse($now)->format('Y:m:d'));
-        if ($presence) return ResponseHelper::error(null, trans('alert.already_presence'));
+        $presence = $this->attendance->checkPrecense(auth()->user()->id, $attendanceTime, Carbon::parse($now)->format('Y:m:d'));
+        if ($presence) {
+            return ResponseHelper::error(null, trans('Anda sudah melakukan absen hari ini'));
+        }
 
         $data = $this->service->store(auth()->user()->id, $rule, $attendanceTime, $now, $request);
 
         $this->attendance->store($data);
 
-        return redirect()->back()->with('success', 'Berhasil Absen');
+        return ResponseHelper::success(null, trans('Berhasil Melakukan Absen'));
+    }
+
+    //Menghitung Jarak
+    public function distance($lat1, $lon1, $lat2, $lon2)
+    {
+        $theta = $lon1 - $lon2;
+        $miles = (sin(deg2rad($lat1)) * sin(deg2rad($lat2))) + (cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta)));
+        $miles = acos($miles);
+        $miles = rad2deg($miles);
+        $miles = $miles * 60 * 1.1515;
+        $feet = $miles * 5280;
+        $yards = $feet / 3;
+        $kilometers = $miles * 1.609344;
+        $meters = $kilometers * 1000;
+        return compact('meters');
     }
 
     /**

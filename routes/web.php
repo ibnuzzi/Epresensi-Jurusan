@@ -32,3 +32,6 @@ Route::resource('attendance', AttendanceController::class);
 Route::get('presence', function (){
     return view('student.presence');
 });
+Route::get('student-attendance', function (){
+    return view('admin.attendance');
+});
