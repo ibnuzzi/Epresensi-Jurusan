@@ -2,10 +2,10 @@
 
 namespace App\Contracts\Repositories;
 
+use App\Contracts\Interfaces\AttendanceInterface;
+use App\Contracts\Repositories\BaseRepository;
 use App\Models\Attendance;
 use Illuminate\Http\Request;
-use App\Contracts\Repositories\BaseRepository;
-use App\Contracts\Interfaces\AttendanceInterface;
 
 class AttendanceRepository extends BaseRepository implements AttendanceInterface
 {
@@ -53,6 +53,19 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
     }
 
     /**
+     * Handle store data event to models.
+     *
+     * @param array $data
+     *
+     * @return mixed
+     */
+    public function storePermission(array $data): mixed
+    {
+        return $this->model->query()
+            ->create($data);
+    }
+
+    /**
      * checkPrecense
      *
      * @param  string $userId
@@ -72,13 +85,13 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
     public function search(Request $request): mixed
     {
 
-        return  $this->model->query()
+        return $this->model->query()
             ->with('user.attendance.attendanceDetails')
             ->when($request->name, function ($query) use ($request) {
                 $query->whereRelation('user', 'name', 'LIKE', '%' . $request->name . '%');
             })
             ->when($request->classroom, function ($query) use ($request) {
-                $query->whereRelation('classroom', 'name', 'LIKE', '%' . $request->classroom . '%');
+                $query->whereRelation('user.student.classroom', 'name', 'LIKE', '%' . $request->classroom . '%');
             })
             ->when($request->date, function ($query) use ($request) {
                 $query->with('user.attendance', function ($query) use ($request) {

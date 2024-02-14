@@ -26,56 +26,71 @@
                         </div>
                     </li>
                     @if (auth()->user()->roles[0]->name == 'admin')
-                    <li class="sidebar-list">
-                        <a class="sidebar-link sidebar-title link-nav" href="/home" data-bs-original-title="" title="">
-                            <i data-feather="home"></i>
-                            <span>Dashboard</span>
-                            <div class="according-menu"><i class="fa fa-angle-right"></i></div>
-                        </a>
-                    </li>
-                    <li class="sidebar-list">
-                        <a class="sidebar-link sidebar-title link-nav" href="/student" data-bs-original-title="" title="">
-                            <i data-feather="users"></i>
-                            <span>Siswa</span>
-                            <div class="according-menu"><i class="fa fa-angle-right"></i></div>
-                        </a>
-                    </li>
-                    <li class="sidebar-list">
-                        <a class="sidebar-link sidebar-title link-nav" href="/classroom" data-bs-original-title="" title="">
-                            <i data-feather="users"></i>
-                            <span>Kelas</span>
-                            <div class="according-menu"><i class="fa fa-angle-right"></i></div>
-                        </a>
-                    </li>
-                    <li class="sidebar-list">
-                        <a class="sidebar-link sidebar-title link-nav" href="/clock-settings" data-bs-original-title="" title="">
-                            <i data-feather="clock"></i>
-                            <span>Setting Jam</span>
-                            <div class="according-menu"><i class="fa fa-angle-right"></i></div>
-                        </a>
-                    </li>
-                    <li class="sidebar-list">
-                        <a class="sidebar-link sidebar-title link-nav" href="/student-attendance" data-bs-original-title="" title="">
-                            <i data-feather="user-check"></i>
-                            <span>Kehadiran</span>
-                            <div class="according-menu"><i class="fa fa-angle-right"></i></div>
-                        </a>
-                    </li>
+                        <li class="sidebar-list">
+                            <a class="sidebar-link sidebar-title link-nav" href="/home" data-bs-original-title=""
+                                title="">
+                                <i data-feather="home"></i>
+                                <span>Dashboard</span>
+                                <div class="according-menu"><i class="fa fa-angle-right"></i></div>
+                            </a>
+                        </li>
+                        <li class="sidebar-list">
+                            <a class="sidebar-link sidebar-title link-nav" href="/student" data-bs-original-title=""
+                                title="">
+                                <i data-feather="users"></i>
+                                <span>Siswa</span>
+                                <div class="according-menu"><i class="fa fa-angle-right"></i></div>
+                            </a>
+                        </li>
+                        <li class="sidebar-list">
+                            <a class="sidebar-link sidebar-title link-nav" href="/classroom" data-bs-original-title=""
+                                title="">
+                                <i data-feather="users"></i>
+                                <span>Kelas</span>
+                                <div class="according-menu"><i class="fa fa-angle-right"></i></div>
+                            </a>
+                        </li>
+                        <li class="sidebar-list">
+                            <a class="sidebar-link sidebar-title link-nav" href="/clock-settings"
+                                data-bs-original-title="" title="">
+                                <i data-feather="clock"></i>
+                                <span>Setting Jam</span>
+                                <div class="according-menu"><i class="fa fa-angle-right"></i></div>
+                            </a>
+                        </li>
+                        <li class="sidebar-list">
+                            <a class="sidebar-link sidebar-title link-nav" href="/student-attendance"
+                                data-bs-original-title="" title="">
+                                <i data-feather="user-check"></i>
+                                <span>Kehadiran</span>
+                                <div class="according-menu"><i class="fa fa-angle-right"></i></div>
+                            </a>
+                        </li>
                     @else
-                    <li class="sidebar-list">
-                        <a class="sidebar-link sidebar-title link-nav" href="/home" data-bs-original-title="" title="">
-                            <i data-feather="home"></i>
-                            <span>Dashboard</span>
-                            <div class="according-menu"><i class="fa fa-angle-right"></i></div>
-                        </a>
-                    </li>
-                    <li class="sidebar-list">
-                        <a class="sidebar-link sidebar-title link-nav" href="/presence" data-bs-original-title="" title="">
-                            <i data-feather="home"></i>
-                            <span>Absen</span>
-                            <div class="according-menu"><i class="fa fa-angle-right"></i></div>
-                        </a>
-                    </li>
+                        <li class="sidebar-list">
+                            <a class="sidebar-link sidebar-title link-nav" href="/home" data-bs-original-title=""
+                                title="">
+                                <i data-feather="home"></i>
+                                <span>Dashboard</span>
+                                <div class="according-menu"><i class="fa fa-angle-right"></i></div>
+                            </a>
+                        </li>
+                        <li class="sidebar-list">
+                            <a class="sidebar-link sidebar-title link-nav" href="/presence" data-bs-original-title=""
+                                title="">
+                                <i data-feather="home"></i>
+                                <span>Absen</span>
+                                <div class="according-menu"><i class="fa fa-angle-right"></i></div>
+                            </a>
+                        </li>
+                        <li class="sidebar-list">
+                            <a class="sidebar-link sidebar-title link-nav" href="/permissions"
+                                data-bs-original-title="" title="">
+                                <i data-feather="home"></i>
+                                <span>Izin/Sakit</span>
+                                <div class="according-menu"><i class="fa fa-angle-right"></i></div>
+                            </a>
+                        </li>
                     @endif
                 </ul>
                 <div class="sidebar-img-section">

@@ -2,25 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
-use App\Models\Attendance;
-use Illuminate\Http\Request;
-use App\Helpers\ResponseHelper;
-use App\Services\AttendanceService;
 use App\Contracts\Interfaces\AttendanceInterface;
-use App\Http\Resources\PresenceResource;
 use App\Contracts\Interfaces\AttendanceRuleInterface;
+use App\Contracts\Interfaces\ClassroomInterface;
+use App\Helpers\ResponseHelper;
+use App\Http\Resources\PresenceResource;
+use App\Models\Attendance;
+use App\Services\AttendanceService;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class AttendanceController extends Controller
 {
     private AttendanceInterface $attendance;
     private AttendanceRuleInterface $attendanceRule;
+    private ClassroomInterface $classroom;
 
-    public function __construct(AttendanceInterface $attendance, AttendanceService $service, AttendanceRuleInterface $attendanceRule)
+    public function __construct(AttendanceInterface $attendance, AttendanceService $service, AttendanceRuleInterface $attendanceRule, ClassroomInterface $classroom)
     {
         $this->attendance = $attendance;
         $this->service = $service;
         $this->attendanceRule = $attendanceRule;
+        $this->classroom = $classroom;
     }
     /**
      * Display a listing of the resource.
@@ -28,7 +31,8 @@ class AttendanceController extends Controller
     public function index(Request $request)
     {
         $students = $this->attendance->search($request);
-        return ResponseHelper::success(PresenceResource::collection($students));
+        $data = $this->service->sortBy($students);
+        return ResponseHelper::success(PresenceResource::collection($data));
     }
 
     /**
@@ -44,8 +48,19 @@ class AttendanceController extends Controller
      */
     public function store(Request $request)
     {
+        $latitudeKantor = -7.8915833;
+        $longitudeKantor = 112.6079333;
         $location = $request->location;
         $locationUser = explode(",", $location);
+        $latitudeUser = $locationUser[0];
+        $longitudeUser = $locationUser[1];
+
+        $jarak = $this->distance($latitudeKantor, $longitudeKantor, $latitudeUser, $longitudeUser);
+        $radius = round($jarak['meters']);
+
+        if ($radius > 10) {
+            return ResponseHelper::error(null, trans('Maaf Anda Berada Diluar Radius, Jarak Anda ' . $radius . ' meter dari sekolah'));
+        }
 
         $now = now();
         $time = Carbon::parse($now);
@@ -121,5 +136,12 @@ class AttendanceController extends Controller
     public function destroy(Attendance $attendance)
     {
         //
+    }
+
+    public function studentAttendance()
+    {
+        $attendance = $this->attendance->get();
+        $classrooms = $this->classroom->get();
+        return view('admin.attendance', compact('attendance', 'classrooms'));
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Http\Requests\AttendancePermissionRequest;
+use App\Traits\UploadTrait;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -9,6 +11,7 @@ use Illuminate\Support\Str;
 
 class AttendanceService
 {
+    use UploadTrait;
 
     /**
      * store
@@ -24,6 +27,7 @@ class AttendanceService
         $extension = explode('/', mime_content_type($image))[1];
         $fileName = Str::random(16) . "." . $extension;
         $filePath = $folderPath . $fileName;
+        $photo = 'absensi/' . $fileName;
 
         // Simpan gambar
         Storage::put($filePath, base64_decode(explode(";base64,", $image)[1]));
@@ -34,7 +38,7 @@ class AttendanceService
             'type' => $type,
             'status' => 'present',
             'created_at' => $time,
-            'photo' => $filePath,
+            'photo' => $photo,
             'location' => $request->location,
         ];
 
@@ -64,22 +68,46 @@ class AttendanceService
 
         $date = Carbon::parse($time);
         $now = Carbon::createFromFormat('H:i:s', $date->format('H:i:s'));
-        if ($now->between($checkinStarts, $checkinEnds->addMinutes(30))) {
+        if ($now->between($checkinStarts, $checkinEnds->addMinutes(5))) {
             return 'checkin';
         } else {
             if ($now < $checkinStarts) {
                 return false;
             }
 
-            if ($rule->early_dismissal) {
-                return 'early dismissal';
-            }
-
-            if ($now->between($checkoutStarts, $checkoutEnds->addMinutes(30))) {
+            if ($now->between($checkoutStarts, $checkoutEnds->addMinutes(5))) {
                 return 'checkout';
             } else {
                 return false;
             }
         }
+    }
+
+    public function sortBy($data)
+    {
+        return $data->sortBy(function ($data) {
+            return $data->user->name;
+        })->values()->all();
+    }
+
+    /**
+     * store
+     *
+     * @param  mixed $request
+     * @param  mixed $student
+     * @return array
+     */
+    public function storePermission(AttendancePermissionRequest $request, $user): array | bool
+    {
+        $data = $request->validated();
+
+        $data['file'] = $request->file('file')->store('permission_file', 'public');
+
+        return [
+            'user_id' => $user,
+            'status' => $data['status'],
+            'date' => now(),
+            'license' => $data['file'],
+        ];
     }
 }

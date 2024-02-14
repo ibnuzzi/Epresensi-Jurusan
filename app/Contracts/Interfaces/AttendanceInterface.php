@@ -18,4 +18,12 @@ interface AttendanceInterface extends StoreInterface, GetInterface, SearchInterf
      */
 
     public function checkPrecense(string $userId, string $type, mixed $date): mixed;
+
+    /**
+     * storePermission
+     *
+     * @param  mixed $data
+     * @return mixed
+     */
+    public function storePermission(array $data): mixed;
 }

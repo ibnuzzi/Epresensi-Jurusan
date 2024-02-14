@@ -177,6 +177,14 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.10.4/dist/sweetalert2.min.css
             const iframeSrc = data['file'];
             $('#detail-file').attr('src', iframeSrc);
         }
+
+        function showLoading() {
+            return `<div class="d-flex justify-content-center" style="margin-top:11rem">
+                        <div class="spinner-border my-auto" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>`
+        }
     </script>
     @yield('scripts')
 </body>
