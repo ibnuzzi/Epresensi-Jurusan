@@ -45,7 +45,7 @@
                         <li class="sidebar-list">
                             <a class="sidebar-link sidebar-title link-nav" href="/classroom" data-bs-original-title=""
                                 title="">
-                                <i data-feather="users"></i>
+                                <i data-feather="codepen"></i>
                                 <span>Kelas</span>
                                 <div class="according-menu"><i class="fa fa-angle-right"></i></div>
                             </a>
@@ -78,7 +78,7 @@
                         <li class="sidebar-list">
                             <a class="sidebar-link sidebar-title link-nav" href="/presence" data-bs-original-title=""
                                 title="">
-                                <i data-feather="home"></i>
+                                <i data-feather="camera"></i>
                                 <span>Absen</span>
                                 <div class="according-menu"><i class="fa fa-angle-right"></i></div>
                             </a>
@@ -86,7 +86,7 @@
                         <li class="sidebar-list">
                             <a class="sidebar-link sidebar-title link-nav" href="/permissions"
                                 data-bs-original-title="" title="">
-                                <i data-feather="home"></i>
+                                <i data-feather="user-x"></i>
                                 <span>Izin/Sakit</span>
                                 <div class="according-menu"><i class="fa fa-angle-right"></i></div>
                             </a>

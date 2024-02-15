@@ -14,28 +14,26 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-body">
-                        <div class="d-flex justify-content-between mb-3">
-                            <form class="">
-                                <div class="input-group">
-                                    <input name="name" type="text" class="form-control" placeholder="Search"
-                                        value="">
-                                </div>
-                                <div class="">
-                                    <select name="" id="" class="form-select">
-                                        <option value="">Filter Kelas</option>
-                                        @foreach ($classrooms as $classroom)
-                                            <option value="{{ $classroom->id }}">{{ $classroom->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </form>
-                            {{-- <div class="">
+                        <form class="d-flex row align-items-center mb-3">
+                            <div class="col-3">
+                                <input name="name" type="text" class="form-control" placeholder="Search"
+                                    value="">
+                            </div>
+                            <div class="col-3">
+                                <select name="" id="" class="form-select">
+                                    <option value="">Filter Kelas</option>
+                                    @foreach ($classrooms as $classroom)
+                                        <option value="{{ $classroom->id }}">{{ $classroom->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            {{-- <div class="ms-3">
                                 <button class="btn me-2 btn-md btn-create text-white" data-bs-toggle="modal"
                                     data-bs-target="#samedata-modal" style="background-color: #1B3061">
                                     Tambah
                                 </button>
                             </div> --}}
-                        </div>
+                        </form>
                         <div class="table-responsive">
                             <table class="table table-lg">
                                 <thead>

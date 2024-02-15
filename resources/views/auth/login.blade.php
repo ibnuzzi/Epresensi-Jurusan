@@ -43,6 +43,10 @@
     <link id="color" rel="stylesheet" href="{{ asset('assets/css/color-1.css') }}" media="screen">
     <!-- Responsive css-->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/responsive.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/sweetalert2.css') }}">
+    <link href="
+https://cdn.jsdelivr.net/npm/sweetalert2@11.10.4/dist/sweetalert2.min.css
+" rel="stylesheet">
 </head>
 
 <body>
@@ -60,7 +64,8 @@
                 <div class="login-card">
                     <div>
                         <div><a class="logo" href="index.html"><img class="img-fluid for-light" style="width: 70%"
-                                    src="{{ asset('assets/images/smk/Logo SMKN 2 Trenggalek.png') }}" alt="logo Image"></a></div>
+                                    src="{{ asset('assets/images/smk/Logo SMKN 2 Trenggalek.png') }}"
+                                    alt="logo Image"></a></div>
                         <div class="login-main">
                             <form method="POST" action="{{ route('login') }}" class="theme-form">
                                 @csrf
@@ -82,8 +87,9 @@
                                 <div class="form-group">
                                     <label for="email" class="form-label"
                                         style="font-weight: bold">{{ __('Password') }}</label>
-                                    <input type="password" class="form-control @error('password') is-invalid @enderror"
-                                        name="password" autocomplete="current-password" placeholder="Masukan Password"
+                                    <input type="password"
+                                        class="form-control @error('password') is-invalid @enderror" name="password"
+                                        autocomplete="current-password" placeholder="Masukan Password"
                                         aria-label="Password" aria-describedby="password-addon">
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
@@ -120,6 +126,18 @@
         <script src="{{ asset('assets/js/config.js') }}"></script>
         <!-- Theme js-->
         <script src="{{ asset('assets/js/script.js') }}"></script>
+        <script src="{{ asset('assets/js/sweet-alert/sweetalert.min.js') }}"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.4/dist/sweetalert2.all.min.js"></script>
+        @if (session('success'))
+            <script>
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: '{{ session('success') }}',
+                });
+            </script>
+        @endif
     </div>
 </body>
 

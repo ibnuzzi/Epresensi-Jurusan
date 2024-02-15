@@ -74,6 +74,6 @@ class RegisterController extends Controller
     {
         $this->service->handleRegistration($request, $this->user, $this->student);
 
-        return redirect()->back()->with('success', trans('auth.register_success'));
+        return view('auth.login')->with('success', trans('Berhasil Register Silahkan Login'));
     }
 }

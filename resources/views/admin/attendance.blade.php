@@ -55,8 +55,8 @@
 
                                 </tbody>
                             </table>
+                            <div id="loading"></div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -151,7 +151,7 @@
                             });
                         } else {
                             $('#loading').html(showNoData(
-                                'Belum ada siswa yang RFIDnya terdaftar pada kelas ini'));
+                                'Belum ada siswa yang absen'));
                         }
                     },
                     error: function(response) {
@@ -189,14 +189,14 @@
                 </td>
                 <td class="py-2">
                     ${student.status === 'alpha' ? `
-                                                                                                                                                                            <button type="button" class="btn btn-info btn-rounded m-t-10 mb-3 btn-upload-file" id="btn-upload-file-${student.id}" data-id="${student.id}">
-                                                                                                                                                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-                                                                                                                                                                                    <path fill="currentColor" d="m19.41 7.41l-4.83-4.83c-.37-.37-.88-.58-1.41-.58H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8.83c0-.53-.21-1.04-.59-1.42zM14.8 15H13v3c0 .55-.45 1-1 1s-1-.45-1-1v-3H9.21c-.45 0-.67-.54-.35-.85l2.8-2.79c.2-.19.51-.19.71 0l2.79 2.79c.3.31.08.85-.36.85zM14 9c-.55 0-1-.45-1-1V3.5L18.5 9H14z"/>
-                                                                                                                                                                                </svg>
-                                                                                                                                                                            </button>` : student.status == 'permission' || student.status == 'sick' ? `
-                                                                                                                                                                            <button type="button" class="btn btn-info btn-rounded m-t-10 mb-3 btn-show-file" id="btn-show-file-${student.id}" data-id="${student.id}">
-                                                                                                                                                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M13 9h5.5L13 3.5V9M6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m0 18h12v-8l-4 4l-2-2l-6 6M8 9a2 2 0 0 0-2 2a2 2 0 0 0 2 2a2 2 0 0 0 2-2a2 2 0 0 0-2-2Z"/></svg>
-                                                                                                                                                                            </button>` : '<p class="fs-4 fw-semibold fs-2">-</p>'}
+                                                                                                                                                                                            <button type="button" class="btn btn-info btn-rounded m-t-10 mb-3 btn-upload-file" id="btn-upload-file-${student.id}" data-id="${student.id}">
+                                                                                                                                                                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                                                                                                                                                                                                    <path fill="currentColor" d="m19.41 7.41l-4.83-4.83c-.37-.37-.88-.58-1.41-.58H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8.83c0-.53-.21-1.04-.59-1.42zM14.8 15H13v3c0 .55-.45 1-1 1s-1-.45-1-1v-3H9.21c-.45 0-.67-.54-.35-.85l2.8-2.79c.2-.19.51-.19.71 0l2.79 2.79c.3.31.08.85-.36.85zM14 9c-.55 0-1-.45-1-1V3.5L18.5 9H14z"/>
+                                                                                                                                                                                                </svg>
+                                                                                                                                                                                            </button>` : student.status == 'permission' || student.status == 'sick' ? `
+                                                                                                                                                                                            <button type="button" class="btn btn-info btn-rounded m-t-10 mb-3 btn-show-file" id="btn-show-file-${student.id}" data-id="${student.id}">
+                                                                                                                                                                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M13 9h5.5L13 3.5V9M6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m0 18h12v-8l-4 4l-2-2l-6 6M8 9a2 2 0 0 0-2 2a2 2 0 0 0 2 2a2 2 0 0 0 2-2a2 2 0 0 0-2-2Z"/></svg>
+                                                                                                                                                                                            </button>` : '<p class="fs-4 fw-semibold fs-2">-</p>'}
                 </td>
             </tr>`;
             }

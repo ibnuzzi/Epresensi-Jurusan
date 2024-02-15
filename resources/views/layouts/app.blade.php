@@ -185,6 +185,16 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.10.4/dist/sweetalert2.min.css
                         </div>
                     </div>`
         }
+
+        function showNoData(message) {
+            return `<div class="d-flex justify-content-center" style="min-height:16rem">
+                        <div class="my-auto ">
+                            <img src="{{ asset('assets/images/smk/Asset 1.png') }}"
+                                                            width="100%" height="200" />
+                            <h4 class="text-center">${message}</h4>
+                            </div>
+                    </div>`
+        }
     </script>
     @yield('scripts')
 </body>
